@@ -23,5 +23,7 @@
       <input type = "submit" value = "Submit">
   </form>
 
+  <?php include 'tables.php';?>
+  <?php makeTable(); ?>
 </body>
 </html>
