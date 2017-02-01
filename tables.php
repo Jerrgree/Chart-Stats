@@ -1,4 +1,13 @@
 <?php
+
+  function display()
+  {
+    if(isset($_POST['precious']))
+    {
+     makeTable();
+    }
+  }
+
   function makeTable()
   {
           echo '<table border="1"><tr><td><b>Name</b></td><td><b>Grade</b></td><td><b>Chart</b></td></tr>';

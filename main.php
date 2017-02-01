@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 
+<?php include 'tables.php';?>
+
 <?php
   $title = "Charts are Love, Charts are Life";
   if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -21,7 +23,7 @@
     Charts are Love, Charts are Life
 </h1>
 
-<form method="post">
+<form method="post";>
 
   Name / Title: <input type="text" name="title" value="<?php if ($title != "Charts are Love, Charts are Life") { echo $title; } ?>"> <br>
 
@@ -48,7 +50,7 @@
 
   <br>
 
-  <input type = "submit">
+  <input type="submit" name="precious" value="Submit">
 
 </form>
 
@@ -56,193 +58,13 @@
   ayyyyyy
 </div>
 
-
-
 <h1>
   <?php echo $title ?>
 </h1>
 
+<?php
+    display();
+?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-------------------------------Do not Touch --------------------->
-  <?php include 'tables.php';?>
-  <?php makeTable(); ?>
 </body>
 </html>
