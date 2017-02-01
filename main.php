@@ -44,7 +44,7 @@
   <br>
 
   Data:
-  <textarea rows="5" cols="50" placeholder="Please enter the names and grades seperated by a comma..."></textarea>
+  <textarea name="gradeData" rows="5" cols="50" placeholder="Please enter the names and grades seperated by a comma..."></textarea>
 
   <br>
 
@@ -61,7 +61,6 @@
 <h1>
   <?php echo $title ?>
 </h1>
-
 
 
 
