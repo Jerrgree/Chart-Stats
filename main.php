@@ -5,8 +5,10 @@
 
 <?php
   $title = "Charts are Love, Charts are Life";
+  $post = false;
   if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
+    $post = true;
     $title = $_POST["title"];
   }
 ?>
@@ -58,8 +60,9 @@
   ayyyyyy
 </div>
 
+
 <h1>
-  <?php echo $title ?>
+  <?php if ($post) {echo $title; } ?>
 </h1>
 
 <?php
