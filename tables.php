@@ -1,3 +1,5 @@
+<!----------funtion display(), shows the table to the screen ---------->
+<!---------- function maketable(), uses information gathered in the text area to make the actual table that is then shown to the screen.------->
 <?php
 
   function display()
