@@ -21,7 +21,7 @@
 	  $gradeData = array();
 	  $sortType  = $_POST['sortType'];	//Get the Sort selection
 	  $chartType = $_POST['chartType'];	//Get the Chart selection
-          
+
 	  //Split the gradeData into an array by EOL
           $arr = explode(PHP_EOL, $_POST['gradeData']);
 	  //Loop through and append values as ["name"]=score
@@ -43,10 +43,10 @@
 	      $averageCount++;
             }
 	  }
-	  
+
 	  //Sorting
 	  if($sortType=="Name"){
-	    ksort($gradeData);	  
+	    ksort($gradeData);
           }
 	  if($sortType=="Score"){
 	    arsort($gradeData);
@@ -54,13 +54,13 @@
 	  if($sortType=="Last Name"){
 	    lastNameSort($gradeData);
 	  }
-	
+
 	  //Heading
 	  $averageScore = round($averageSum/$averageCount,2);
 	  echo 'Highest Score: '.$highestScore.' by '.$highestName.'<br>';
 	  echo 'Lowest Score: '.$lowestScore.' by '.$lowestName.'<br>';
 	  echo 'Average Score: '.$averageScore.'<br>';
-	
+
 
 	  //Spit out the final table
 	  echo '<table border="1"><tr><td><b>Name</b></td><td><b>Grade</b></td><td><b>Chart</b></td></tr>';
@@ -69,7 +69,7 @@
 	    if(charType=="None"){
 		  $charOutput = '<h2>BLANK</h2>';
 	    }
-	    if($chartType=="Bar"){
+	    if($chartType=="Asterisk"){
 		  $charOutput = str_repeat('*',($grade - ($grade % 10))/10 );//Is there really no DIV in php?
 	    }
             echo '<tr>';
@@ -78,10 +78,10 @@
 	    echo '<td>'.$charOutput.'</td>';//Is there really no DIV in php?
             echo '</tr>';
 	  }
-	  	
+
 
           echo '</table>';
-	
+
 
 
   }
@@ -93,7 +93,7 @@
       unset($gradeData[$origName]);
       $gradeData += array(($nameArr[1].' '.$nameArr[0]) => $origGrade);
     }
-    
+
     //Now sort alphabetically by last name
     ksort($gradeData);
     foreach ($gradeData as $postName => $postGrade){

@@ -37,9 +37,9 @@
 <!--------------drop down menu ---------->
   Chart Type:
   <select name="chartType">
-    <option value = "Stats"> Stats </option>
-    <option value = "Bar"> Bar </option>
-    <option value = "Line"> Line </option>
+    <option value = "None"> None </option>
+    <option value = "Asterisk"> Asterisk </option>
+    <option value = "SVG Bar"> SVG BAR </option>
     <option value = "Pie"> Pie </option>
   </select>
   <br>
