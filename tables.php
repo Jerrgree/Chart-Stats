@@ -60,6 +60,8 @@
 	  echo 'Highest Score: '.$highestScore.' by '.$highestName.'<br>';
 	  echo 'Lowest Score: '.$lowestScore.' by '.$lowestName.'<br>';
 	  echo 'Average Score: '.$averageScore.'<br>';
+    echo 'Chart Type: '.$chartType.'<br>';
+    echo 'Sorted By: '.$sortType.'<br>';
 
 
 	  //Spit out the final table
