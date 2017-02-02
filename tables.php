@@ -13,7 +13,7 @@
   {
   	  $highestScore = 0;
 	  $highestName  = "";
-	  $lowestScore  = 100;
+	  $lowestScore  = -1;
 	  $lowestName   = "";
 	  $averageScore = 0;
 	  $averageCount = 0;
@@ -24,10 +24,10 @@
           
 	  //Split the gradeData into an array by EOL
           $arr = explode(PHP_EOL, $_POST['gradeData']);
-	
 	  //Loop through and append values as ["name"]=score
           foreach ($arr as $value){
             $newArr = explode(',', $value);
+	    $newArr[1] = (int)$newArr[1];//Convert to int
 	    if($newArr[0]!=""){
 	      $gradeData += array($newArr[0] => $newArr[1]);
 	      //Checking Scores
@@ -35,7 +35,7 @@
 	        $highestName  = $newArr[0];
 	        $highestScore = $newArr[1];
 	      }
-	      if($newArr[1]<$lowestScore){
+	      if(($newArr[1]<$lowestScore) || $lowestScore==-1){
 	        $lowestName  = $newArr[0];
 	        $lowestScore = $newArr[1];
 	      }
@@ -60,20 +60,28 @@
 	  echo 'Highest Score: '.$highestScore.' by '.$highestName.'<br>';
 	  echo 'Lowest Score: '.$lowestScore.' by '.$lowestName.'<br>';
 	  echo 'Average Score: '.$averageScore.'<br>';
-
+	
 
 	  //Spit out the final table
 	  echo '<table border="1"><tr><td><b>Name</b></td><td><b>Grade</b></td><td><b>Chart</b></td></tr>';
 	  foreach ($gradeData as $name => $grade){
+	    //Chart
+	    if(charType=="None"){
+		  $charOutput = '<h2>BLANK</h2>';
+	    }
+	    if($chartType=="Bar"){
+		  $charOutput = str_repeat('*',($grade - ($grade % 10))/10 );//Is there really no DIV in php?
+	    }
             echo '<tr>';
 	    echo '<td>'.$name.'</td>';
 	    echo '<td>'.$grade.'</td>';
-	    echo '<td>'.str_repeat('*',($grade - ($grade % 10))/10 ).'</td>';//Is there really no DIV in php?
+	    echo '<td>'.$charOutput.'</td>';//Is there really no DIV in php?
             echo '</tr>';
-	  }	
+	  }
+	  	
 
           echo '</table>';
-
+	
 
 
   }
