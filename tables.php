@@ -62,6 +62,7 @@
 	  echo 'Average Score: '.$averageScore.'<br>';
     echo 'Chart Type: '.$chartType.'<br>';
     echo 'Sorted By: '.$sortType.'<br>';
+    echo '<br>';
 
 
 	  //Spit out the final table
