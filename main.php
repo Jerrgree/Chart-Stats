@@ -36,7 +36,7 @@
 
 <!--------------drop down menu ---------->
   Chart Type:
-  <select>
+  <select name="chartType">
     <option value = "Stats"> Stats </option>
     <option value = "Bar"> Bar </option>
     <option value = "Line"> Line </option>
@@ -46,7 +46,7 @@
 
 <!----------drop down menu ------------>
   Sort By:
-  <select>
+  <select name="sortType">
     <option value = "None"> None </option>
     <option value = "Score"> Score </option>
     <option value = "Name"> Name </option>
