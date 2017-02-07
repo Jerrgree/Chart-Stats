@@ -66,7 +66,7 @@
 
 
 	  //Spit out the final table
-	  echo '<table border="1" class="table table-hover table-bordered"><tr><td><b>Name</b></td><td><b>Grade</b></td><td><b>Chart</b></td></tr>';
+	  echo '<table class="table table-hover table-bordered"><thead class="thead-inverse"><tr><th>Name</th><th>Grade</th><th>Chart</th></tr></thead><tbody>';
 	  foreach ($gradeData as $name => $grade){
 	    //Chart
 	    if(charType=="None"){
@@ -83,10 +83,7 @@
 	  }
 
 
-          echo '</table>';
-
-
-
+          echo '</tbody></table>';
   }
 
   function lastNameSort(& $gradeData){
