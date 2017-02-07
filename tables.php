@@ -66,7 +66,7 @@
 
 
 	  //Spit out the final table
-	  echo '<table border="1"><tr><td><b>Name</b></td><td><b>Grade</b></td><td><b>Chart</b></td></tr>';
+	  echo '<table border="1" class="table table-striped"><tr><td><b>Name</b></td><td><b>Grade</b></td><td><b>Chart</b></td></tr>';
 	  foreach ($gradeData as $name => $grade){
 	    //Chart
 	    if(charType=="None"){
