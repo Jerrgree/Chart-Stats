@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<!-- Bootstrap CDN -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
 
 <!----------------Include another .php file ------->
 <?php include 'tables.php';?>
@@ -65,7 +68,7 @@
 
 <!--------formatting a layout kinda? ---------->
 <div style ="background-color: black; width=10;">
-  ayyyyyy
+  <br>
 </div>
 
 <!--------- if statement, that makes a title only show on the bottom when the user submits a title ------->
