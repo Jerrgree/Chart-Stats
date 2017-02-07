@@ -21,6 +21,8 @@
 	  $gradeData = array();
 	  $sortType  = $_POST['sortType'];	//Get the Sort selection
 	  $chartType = $_POST['chartType'];	//Get the Chart selection
+	  $svgWidth = 0;
+
 
 	  //Split the gradeData into an array by EOL
           $arr = explode(PHP_EOL, $_POST['gradeData']);
@@ -60,30 +62,47 @@
 	  echo 'Highest Score: '.$highestScore.' by '.$highestName.'<br>';
 	  echo 'Lowest Score: '.$lowestScore.' by '.$lowestName.'<br>';
 	  echo 'Average Score: '.$averageScore.'<br>';
-    echo 'Chart Type: '.$chartType.'<br>';
-    echo 'Sorted By: '.$sortType.'<br>';
-    echo '<br>';
+    	  echo 'Chart Type: '.$chartType.'<br>';
+    	  echo 'Sorted By: '.$sortType.'<br>';
+    	  echo '<br>';
 
 
 	  //Spit out the final table
-	  echo '<table class="table table-hover table-bordered"><thead class="thead-inverse"><tr><th>Name</th><th>Grade</th><th>Chart</th></tr></thead><tbody>';
+	  echo '<table border="1"><tr><td><b>Name</b></td><td><b>Grade</b></td><td><b>Chart</b></td></tr>';
 	  foreach ($gradeData as $name => $grade){
 	    //Chart
-	    if(charType=="None"){
-		  $charOutput = '<h2>BLANK</h2>';
-	    }
+	 //   if(charType=="None"){
+	 //		$charOutput = '<h2>BLANK</h2>';
+	 // }
 	    if($chartType=="Asterisk"){
 		  $charOutput = str_repeat('*',($grade - ($grade % 10))/10 );//Is there really no DIV in php?
 	    }
-            echo '<tr>';
+	  //  if($chartType=="SVG Bar"){
+	  //  	  $svgWidth = (($grade - ($grade % 10) ) /10) * 10;	
+	   // }
+	    echo '<tr>';
 	    echo '<td>'.$name.'</td>';
 	    echo '<td>'.$grade.'</td>';
-	    echo '<td>'.$charOutput.'</td>';//Is there really no DIV in php?
+	    if($chartType!="SVG Bar"){
+	    	echo '<td>'.$charOutput.'</td>';
+		//Is there really no DIV in php?
+	    }
+		
+	    if($chartType=="SVG Bar"){
+	       echo '<td style ="width:100px; height:20px;background-color: white;overflow:visible;">';
+	       echo '<svg width="100" height="20">';
+	       echo '<rect width="'.$grade.'" height="20" style="fill:rgb(255,0,0);stroke-width:3;stroke:rgb(0,0,0)" />';
+	       echo '</svg>';
+	       echo '</td>';
+            }
             echo '</tr>';
 	  }
 
 
-          echo '</tbody></table>';
+          echo '</table>';
+
+
+
   }
 
   function lastNameSort(& $gradeData){
