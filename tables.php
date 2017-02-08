@@ -5,7 +5,9 @@
   {
     if(isset($_POST['precious']))
     {
-     makeTable();
+      makeTable();
+      echo $_FILES['csvfile']['type'];
+      echo file_get_contents($_FILES['csvfile']);
     }
   }
 

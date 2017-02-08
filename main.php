@@ -34,7 +34,7 @@
 
 <!-------------- form, a HTML way to get user input with text fields and buttons and the lot --------->
 <!-------------- first one is checking the title, to see if they input a new title before they click submit --------->
-<form method="post";>
+<form enctype="multipart/form-data" method="post";>
   Name / Title: <input type="text" name="title" value="<?php if ($title != "Charts are Love, Charts are Life") { echo $title; } ?>"> <br>
 
 <!--------------drop down menu ---------->
@@ -59,7 +59,10 @@
 
 <!---------textarea / box ---------->
   Data:
-  <textarea name="gradeData" rows="5" cols="50" placeholder="Please enter the names and grades seperated by a comma..."><? $_POST['gradeData']?></textarea>
+  <textarea name="gradeData" rows="5" cols="50" placeholder="Please enter the names and grades seperated by a comma..."><?php echo $_POST['gradeData']; ?></textarea>
+  <br>
+
+  <input name="csvfile" type="file" />
   <br>
 
 <!------------ button at the end, that submits and then calls functions on the extra .php file --------->
