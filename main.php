@@ -72,7 +72,7 @@
     ?></textarea>
   <br>
 
-  <input name="csvfile" type="file" />
+  <input name="csvfile" type="file" accept=".csv"/>
   <br>
 
 <!------------ button at the end, that submits and then calls functions on the extra .php file --------->
