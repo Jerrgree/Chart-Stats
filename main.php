@@ -59,7 +59,7 @@
 
 <!---------textarea / box ---------->
   Data:
-  <textarea name="gradeData" rows="5" cols="50" placeholder="Please enter the names and grades seperated by a comma..."><?php echo $_POST['gradeData']; ?></textarea>
+  <textarea name="gradeData" rows="5" cols="50" placeholder="Please enter the names and grades seperated by a comma..."><?php echo $_POST['gradeData']."\n".file_get_contents($_FILES['csvfile']['tmp_name']); ?></textarea>
   <br>
 
   <input name="csvfile" type="file" />

@@ -1,13 +1,20 @@
 <!----------funtion display(), shows the table to the screen ---------->
 <!---------- function maketable(), uses information gathered in the text area to make the actual table that is then shown to the screen.------->
 <?php
+  ini_set('auto_detect_line_endings',TRUE);
   function display()
   {
     if(isset($_POST['precious']))
     {
+      if ($_FILES['csvfile']['error'] == 0)
+      {
+        $userfile = $_FILES['csvfile']['tmp_name'];
+        echo "<pre>";
+        echo file_get_contents($userfile);
+        $_POST['gradeData'] = $_POST['gradeData'].file_get_contents($userfile)."<br>";
+        fclose($handle);
+      }
       makeTable();
-      echo $_FILES['csvfile']['type'];
-      echo file_get_contents($_FILES['csvfile']);
     }
   }
 
