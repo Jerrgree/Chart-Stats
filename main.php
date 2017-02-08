@@ -40,20 +40,21 @@
 <!--------------drop down menu ---------->
   Chart Type:
   <select name="chartType">
-    <option value = "None"> None </option>
-    <option value = "Asterisk"> Asterisk </option>
-    <option value = "SVG Bar"> SVG BAR </option>
-    <option value = "Pie"> Pie </option>
+    <option <?php if ($_POST['chartType'] == 'None') echo 'selected="selected"';?>>None</option>
+    <option <?php if ($_POST['chartType'] == 'Asterisk') echo 'selected="selected"';?>>Asterisk</option>
+    <option <?php if ($_POST['chartType'] == 'SVG-Bar') echo 'selected="selected"';?>>SVG-Bar</option>
+    <option <?php if ($_POST['chartType'] == 'SVG-Line') echo 'selected="selected"';?>>SVG-Line</option>
+    <option <?php if ($_POST['chartType'] == 'SVG-Pie') echo 'selected="selected"';?>>SVG-Pie</option>
   </select>
   <br>
 
 <!----------drop down menu ------------>
   Sort By:
   <select name="sortType">
-    <option value = "None"> None </option>
-    <option value = "Score"> Score </option>
-    <option value = "Name"> Name </option>
-    <option value = "Last Name"> Last Name </option>
+    <option <?php if ($_POST['sortType'] == 'None') echo 'selected="selected"';?>>None</option>
+    <option <?php if ($_POST['sortType'] == 'Score') echo 'selected="selected"';?>>Score</option>
+    <option <?php if ($_POST['sortType'] == 'First Name') echo 'selected="selected"';?>>First Name</option>
+    <option <?php if ($_POST['sortType'] == 'Last Name') echo 'selected="selected"';?>>Last Name</option>
   </select>
   <br>
 
