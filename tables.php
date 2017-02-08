@@ -68,7 +68,7 @@
 
 
 	  //Spit out the final table
-	  echo '<table border="1"><tr><td><b>Name</b></td><td><b>Grade</b></td><td><b>Chart</b></td></tr>';
+	  echo '<table class="table table-hover table-bordered"><thead class="thead-inverse"><tr><th>Name</th><th>Grade</th><th>Chart</th></tr></thead><tbody>';
 	  foreach ($gradeData as $name => $grade){
 	    //Chart
 	 //   if(charType=="None"){
@@ -78,7 +78,7 @@
 		  $charOutput = str_repeat('*',($grade - ($grade % 10))/10 );//Is there really no DIV in php?
 	    }
 	  //  if($chartType=="SVG Bar"){
-	  //  	  $svgWidth = (($grade - ($grade % 10) ) /10) * 10;	
+	  //  	  $svgWidth = (($grade - ($grade % 10) ) /10) * 10;
 	   // }
 	    echo '<tr>';
 	    echo '<td>'.$name.'</td>';
@@ -87,7 +87,7 @@
 	    	echo '<td>'.$charOutput.'</td>';
 		//Is there really no DIV in php?
 	    }
-		
+
 	    if($chartType=="SVG Bar"){
 	       echo '<td style ="width:100px; height:20px;background-color: white;overflow:visible;">';
 	       echo '<svg width="100" height="20">';
@@ -98,11 +98,7 @@
             echo '</tr>';
 	  }
 
-
-          echo '</table>';
-
-
-
+          echo '</tbody></table>';
   }
 
   function lastNameSort(& $gradeData){
