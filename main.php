@@ -59,7 +59,7 @@
 
 <!---------textarea / box ---------->
   Data:
-  <textarea name="gradeData" rows="5" cols="50" placeholder="Please enter the names and grades seperated by a comma..."></textarea>
+  <textarea name="gradeData" rows="5" cols="50" placeholder="Please enter the names and grades seperated by a comma..."><? $_POST['gradeData']?></textarea>
   <br>
 
 <!------------ button at the end, that submits and then calls functions on the extra .php file --------->
