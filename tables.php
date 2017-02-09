@@ -9,10 +9,7 @@
       if ($_FILES['csvfile']['error'] == 0)
       {
         $userfile = $_FILES['csvfile']['tmp_name'];
-        echo "<pre>";
-        echo file_get_contents($userfile);
         $_POST['gradeData'] = $_POST['gradeData'].file_get_contents($userfile)."<br>";
-        fclose($handle);
       }
       makeTable();
     }
@@ -56,7 +53,7 @@
 	  }
 
 	  //Sorting
-	  if($sortType=="Name"){
+	  if($sortType=="First Name"){
 	    ksort($gradeData);
           }
 	  if($sortType=="Score"){
@@ -92,12 +89,12 @@
 	    echo '<tr>';
 	    echo '<td>'.$name.'</td>';
 	    echo '<td>'.$grade.'</td>';
-	    if($chartType!="SVG Bar"){
+	    if($chartType!="SVG-Bar"){
 	    	echo '<td>'.$charOutput.'</td>';
 		//Is there really no DIV in php?
 	    }
 
-	    if($chartType=="SVG Bar"){
+	    if($chartType=="SVG-Bar"){
 	       echo '<td style ="width:100px; height:20px;background-color: white;overflow:visible;">';
 	       echo '<svg width="100" height="20">';
 	       echo '<rect width="'.$grade.'" height="20" style="fill:rgb(255,0,0);stroke-width:3;stroke:rgb(0,0,0)" />';
