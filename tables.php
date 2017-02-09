@@ -9,7 +9,7 @@
       if ($_FILES['csvfile']['error'] == 0)
       {
         $userfile = $_FILES['csvfile']['tmp_name'];
-        $_POST['gradeData'] = $_POST['gradeData'].file_get_contents($userfile)."<br>";
+        $_POST['gradeData'] = $_POST['gradeData']."\n".file_get_contents($userfile)."<br>";
       }
       makeTable();
     }
