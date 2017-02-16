@@ -28,6 +28,13 @@
 	  $sortType  = $_POST['sortType'];	//Get the Sort selection
 	  $chartType = $_POST['chartType'];	//Get the Chart selection
 	  $svgWidth = 0;
+	  $countGradeA = 0;
+	  $countGradeB = 0;
+	  $countGradeC = 0;
+	  $countGradeD = 0;
+	  $countGradeF = 0;
+	  $countTotalGrades = 0;
+
 
 
 	  //Split the gradeData into an array by EOL
@@ -46,6 +53,23 @@
 	      if(($newArr[1]<$lowestScore) || $lowestScore==-1){
 	        $lowestName  = $newArr[0];
 	        $lowestScore = $newArr[1];
+	      }
+	      $countTotalGrades++;
+	      //Check what grade this is, increment grade counter
+	      if($newArr[1]>=90){
+		$countGradeA++;
+	      }
+	      else if($newArr[1]>=80){
+		$countGradeB++;
+	      }
+	      else if($newArr[1]>=70){
+		$countGradeC++;
+	      }
+	      else if($newArr[1]>=60){
+		$countGradeD++;
+	      }
+	      else{
+		$countGradeF++;
 	      }
 	      $averageSum += $newArr[1];
 	      $averageCount++;
@@ -72,8 +96,51 @@
     	  echo 'Sorted By: '.$sortType.'<br>';
     	  echo '<br>';
 
-
-	  //Spit out the final table
+	  //It's here so it doesn't get place in a table
+	 if($chartType=="SVG-Pie"){
+	   $currentCirclePos = $countGradeA;
+	   $gradeAX = getPieX($currentCirclePos/$countTotalGrades);
+	   $gradeAY = getPieY($currentCirclePos/$countTotalGrades);
+	   $currentCirclePos += $countGradeB;
+	   $gradeBX = getPieX($currentCirclePos/$countTotalGrades);
+	   $gradeBY = getPieY($currentCirclePos/$countTotalGrades);
+	   $currentCirclePos += $countGradeC;
+	   $gradeCX = getPieX($currentCirclePos/$countTotalGrades);
+	   $gradeCY = getPieY($currentCirclePos/$countTotalGrades);
+	   $currentCirclePos += $countGradeD;
+	   $gradeDX = getPieX($currentCirclePos/$countTotalGrades);
+	   $gradeDY = getPieY($currentCirclePos/$countTotalGrades);
+	   $currentCirclePos += $countGradeF;
+	   $gradeFX = getPieX($currentCirclePos/$countTotalGrades);
+	   $gradeFY = getPieY($currentCirclePos/$countTotalGrades);
+	   //Echo the color chart
+	   echo '<table style="border:1px solid black;">';
+	   echo '<tr><td style="border:1px solid black;">A\'s: '.$countGradeA.'</td>';
+	   echo '<td style="border:1px solid black;">B\'s: '.$countGradeB.'</td>';
+	   echo '<td style="border:1px solid black;">C\'s: '.$countGradeC.'</td>';
+	   echo '<td style="border:1px solid black;">D\'s: '.$countGradeD.'</td>';
+	   echo '<td style="border:1px solid black;">F\'s: '.$countGradeF.'</td></tr>';
+	   echo '<tr><td bgcolor="Blue" height="16" width="48"></td>';
+           echo '<td bgcolor="Green" height="16" width="48"></td>';
+           echo '<td bgcolor="Yellow" height="16" width="48"></td>';
+           echo '<td bgcolor="Brown" height="16" width="48"></td>';
+    	   echo '<td bgcolor="Red" height="16" width="48"></td></tr></table>';
+	   echo '<br>';
+	   //Create the Pie Chart
+	   echo '<svg width="240" height="240" viewBox="-1 -1 2 2" style="transform: rotate(-90deg)">';
+	   $pieArc = (($countGradeA/$countTotalGrades) > 0.50 ? 1 : 0);
+	   echo '<path d="M 1 0 A 1 1 0 '.$pieArc.' 1 '.$gradeAX.' '.$gradeAY.' L 0 0" fill="Blue"></path>';
+	   $pieArc = (($countGradeB/$countTotalGrades) > 0.50 ? 1 : 0);
+	   echo '<path d="M '.$gradeAX.' '.$gradeAY.' A 1 1 0 '.$pieArc.' 1 '.$gradeBX.' '.$gradeBY.' L 0 0" fill="Green"></path>';
+	   $pieArc = (($countGradeC/$countTotalGrades) > 0.50 ? 1 : 0);
+	   echo '<path d="M '.$gradeBX.' '.$gradeBY.' A 1 1 0 '.$pieArc.' 1 '.$gradeCX.' '.$gradeCY.' L 0 0" fill="Yellow"></path>';
+	   $pieArc = (($countGradeD/$countTotalGrades) > 0.50 ? 1 : 0);
+	   echo '<path d="M '.$gradeCX.' '.$gradeCY.' A 1 1 0 '.$pieArc.' 1 '.$gradeDX.' '.$gradeDY.' L 0 0" fill="Brown"></path>';
+	   $pieArc = (($countGradeF/$countTotalGrades) > 0.50 ? 1 : 0);
+	   echo '<path d="M '.$gradeDX.' '.$gradeDY.' A 1 1 0 '.$pieArc.' 1 '.$gradeFX.' '.$gradeFY.' L 0 0" fill="Red"></path>';
+	   echo '</svg>';
+	 }
+	 //Spit out the final table
 	  echo '<table class="table table-hover table-bordered"><thead class="thead-inverse"><tr><th>Name</th><th>Grade</th><th>Chart</th></tr></thead><tbody>';
 	  foreach ($gradeData as $name => $grade){
 	    //Chart
@@ -124,6 +191,16 @@
     }
   }
 
+  //Basic Trig functions that return the position on our PieChart for a given percent of the circle
+  function getPieX($percent){
+    $x = cos(2 * pi() * $percent);
+    return $x;
+  }
+  
+  function getPieY($percent){
+    $y = sin(2 * pi() * $percent);
+    return $y;
+  }
 
 
  ?>
