@@ -1,6 +1,8 @@
 <!----------funtion display(), shows the table to the screen ---------->
 <!---------- function maketable(), uses information gathered in the text area to make the actual table that is then shown to the screen.------->
+
 <?php
+	
   ini_set('auto_detect_line_endings',TRUE);
   function display()
   {
@@ -75,6 +77,7 @@
 	      $averageCount++;
             }
 	  }
+          $gradearray = array($countGradeA, $countGradeB, $countGradeC, $countGradeD, $countGradeF);
 
 	  //Sorting
 	  if($sortType=="First Name"){
@@ -140,6 +143,52 @@
 	   echo '<path d="M '.$gradeDX.' '.$gradeDY.' A 1 1 0 '.$pieArc.' 1 '.$gradeFX.' '.$gradeFY.' L 0 0" fill="Red"></path>';
 	   echo '</svg>';
 	 }
+	
+	if($chartType=="SVG-Line"){
+		$height = 200;
+		//Calculate #of pixels for each value of letter grades
+		$mostGrade = max($gradearray);
+		$leastGrade = min($gradearray);
+		$minY = $height / $mostGrade;
+
+		$lineA = lineReverse($minY * $countGradeA, 200);
+		$lineB = lineReverse($minY * $countGradeB, 200);
+		$lineC = lineReverse($minY * $countGradeC, 200);
+		$lineD = lineReverse($minY * $countGradeD, 200);
+		$lineF = lineReverse($minY * $countGradeF, 200);				
+		
+		//Count of letter grades
+		echo '<table style="border:1px solid black;">';
+	        echo '<tr><td style="border:1px solid black;">A\'s: '.$countGradeA.'</td>';
+	        echo '<td style="border:1px solid black;">B\'s: '.$countGradeB.'</td>';
+	        echo '<td style="border:1px solid black;">C\'s: '.$countGradeC.'</td>';
+	        echo '<td style="border:1px solid black;">D\'s: '.$countGradeD.'</td>';
+	        echo '<td style="border:1px solid black;">F\'s: '.$countGradeF.'</td></tr></table>';
+		echo '<br>';
+		//LINE GRAPH
+  		echo '<svg height="'.$height.'" width="1000">';
+		   echo '<text x="150" y="11">'.$mostGrade.'</text>';
+		   echo '<text x="150" y="200">0</text>';
+		   echo '<text x="65" y="160" fill="black" transform="rotate(-90 120,120)">NUMBER OF GRADES</text>';
+  		   echo '<polyline points="200,'.$lineF.' 400,'.$lineD.' 600,'.$lineC.' 800,'.$lineB.' 1000,'.$lineA.'"
+  		   style="fill:none;stroke:black;stroke-width:3" />';
+		   echo '<line x1="200" y1="200" x2="200" y2="0" style="stroke:rgb(0,0,0);stroke-width:3" />';	
+		   echo '<line x1="200" y1="200" x2="1000" y2="200" style="stroke:rgb(0,0,0);stroke-width:4  " />';
+		   echo '<text x="200" y="220">F</text>';
+		   echo '<br>';
+		   echo '<br>';
+		echo '</svg>';
+		echo '<svg height="10" width="1000">';
+		        echo '<text x="200" y="0">F</text>';
+ 			echo '<text x="400" y="200">D</text>';
+ 			echo '<text x="600" y="200">C</text>';
+ 			echo '<text x="800" y="200">B</text>';
+		echo '</svg>';
+
+	}
+
+	
+
 	 //Spit out the final table
 	  echo '<table class="table table-hover table-bordered"><thead class="thead-inverse"><tr><th>Name</th><th>Grade</th><th>Chart</th></tr></thead><tbody>';
 	  foreach ($gradeData as $name => $grade){
@@ -172,7 +221,8 @@
 	  }
 
           echo '</tbody></table>';
-  }
+
+	  }
 
   function lastNameSort(& $gradeData){
     //I'm sure there is a better way
@@ -201,6 +251,10 @@
     $y = sin(2 * pi() * $percent);
     return $y;
   }
-
+ 
+  function lineReverse($grade, $height){
+	$temp = $height - $grade;
+	return abs($temp);
+  }
 
  ?>
